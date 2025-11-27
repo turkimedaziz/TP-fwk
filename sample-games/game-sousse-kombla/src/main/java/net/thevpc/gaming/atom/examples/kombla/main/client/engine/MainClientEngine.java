@@ -26,7 +26,7 @@ public class MainClientEngine extends AbstractMainEngine {
     @Override
     protected void sceneActivating() {
         // put here your MainClientDAO instance
-        // dao = new TCPMainClientDAO();
+            dao = new TCPMainClientDAO();
         // dao = new UDPMainClientDAO();
 
         dao.start(new MainClientDAOListener() {

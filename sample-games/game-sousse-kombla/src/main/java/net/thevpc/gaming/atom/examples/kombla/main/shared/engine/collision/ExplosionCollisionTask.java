@@ -12,10 +12,7 @@ import net.thevpc.gaming.atom.model.Sprite;
 /**
  * @author Taha Ben Salah (taha.bensalah@gmail.com)
  */
-@AtomSpriteCollisionTask(
-        sceneEngine = "mainLocal,mainServer",
-        kind = "Explosion"
-)
+@AtomSpriteCollisionTask(sceneEngine = "mainLocal,mainServer", kind = "Explosion")
 public class ExplosionCollisionTask implements SpriteCollisionTask {
 
     @Override
@@ -25,7 +22,7 @@ public class ExplosionCollisionTask implements SpriteCollisionTask {
         if (!spriteCollision.getOther().isDead()) {
             explosion.die();
             if (other.getKind().equals("Person")) {
-                other.addLife(-1);
+                other.addLife(-100); // Kill player instantly
             }
         }
     }

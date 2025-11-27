@@ -13,7 +13,6 @@ import net.thevpc.gaming.atom.engine.maze.MazeTypeDecorator;
 import net.thevpc.gaming.atom.examples.kombla.main.shared.engine.AbstractMainEngine;
 import net.thevpc.gaming.atom.model.*;
 
-
 /**
  * @author Taha Ben Salah (taha.bensalah@gmail.com)
  */
@@ -44,7 +43,7 @@ public class BaseMainEngine extends AbstractMainEngine {
     @Override
     protected void sceneActivating() {
         getModel().setProperty("Phase", "WAITING");
-        Sprite boss = addBomberPlayer("Boss");
+        Sprite boss = addBomberPlayer("Turki");
         setCurrentPlayerId(boss.getPlayerId());
     }
 
@@ -77,7 +76,6 @@ public class BaseMainEngine extends AbstractMainEngine {
         return person;
     }
 
-
     public Sprite findBomber(int playerId) {
         return findSpriteByKind("Person", playerId, null);
     }
@@ -93,6 +91,8 @@ public class BaseMainEngine extends AbstractMainEngine {
             Tile tile = findTile(person.getLocation());
             bomb.setLocation(tile.getLocation());
             addSprite(bomb);
+            setSpriteMainTask(bomb,
+                    new net.thevpc.gaming.atom.examples.kombla.main.shared.engine.tasks.BombSpriteMainTask());
         }
     }
 
