@@ -4,10 +4,13 @@
  */
 package net.thevpc.gaming.atom.model;
 
+import java.io.Serializable;
+
 /**
  * @author Taha Ben Salah (taha.bensalah@gmail.com)
  */
-public class ModelVector {
+public class ModelVector implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private double x;
     private double y;

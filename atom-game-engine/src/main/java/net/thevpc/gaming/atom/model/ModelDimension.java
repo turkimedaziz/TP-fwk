@@ -5,13 +5,14 @@
 
 package net.thevpc.gaming.atom.model;
 
-
+import java.io.Serializable;
 import net.thevpc.gaming.atom.util.AtomUtils;
 
 /**
  * @author Taha Ben Salah (taha.bensalah@gmail.com)
  */
-public class ModelDimension extends Dimension {
+public class ModelDimension extends Dimension implements Serializable {
+    private static final long serialVersionUID = 1L;
     private double width;
     private double height;
     private double altitude;
@@ -37,7 +38,6 @@ public class ModelDimension extends Dimension {
     public double getAltitude() {
         return altitude;
     }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -65,7 +65,8 @@ public class ModelDimension extends Dimension {
         int hash = 5;
         hash = 37 * hash + (int) (Double.doubleToLongBits(this.width) ^ (Double.doubleToLongBits(this.width) >>> 32));
         hash = 37 * hash + (int) (Double.doubleToLongBits(this.height) ^ (Double.doubleToLongBits(this.height) >>> 32));
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.altitude) ^ (Double.doubleToLongBits(this.altitude) >>> 32));
+        hash = 37 * hash
+                + (int) (Double.doubleToLongBits(this.altitude) ^ (Double.doubleToLongBits(this.altitude) >>> 32));
         return hash;
     }
 
@@ -82,44 +83,39 @@ public class ModelDimension extends Dimension {
         return new ModelDimension(
                 width / other.width,
                 height / other.height,
-                altitude / other.altitude
-        );
+                altitude / other.altitude);
     }
 
     public ModelDimension multiply(ModelDimension other) {
         return new ModelDimension(
                 width * other.width,
                 height * other.height,
-                altitude * other.altitude
-        );
+                altitude * other.altitude);
     }
 
     public ModelDimension plus(ModelDimension other) {
         return new ModelDimension(
                 width + other.width,
                 height + other.height,
-                altitude + other.altitude
-        );
+                altitude + other.altitude);
     }
 
     public ModelDimension subtract(ModelDimension other) {
         return new ModelDimension(
                 width - other.width,
                 height - other.height,
-                altitude - other.altitude
-        );
+                altitude - other.altitude);
     }
 
     public ModelDimension boundBy(ModelDimension from, ModelDimension to) {
         return new ModelDimension(
                 AtomUtils.boundBy(width, from.width, to.width),
                 AtomUtils.boundBy(height, from.height, to.height),
-                AtomUtils.boundBy(altitude, from.altitude, to.altitude)
-        );
+                AtomUtils.boundBy(altitude, from.altitude, to.altitude));
     }
 
-    public static ModelDimension of(ViewDimension d){
-        return new ModelDimension(d.getWidth(),d.getHeight(),d.getAltitude());
+    public static ModelDimension of(ViewDimension d) {
+        return new ModelDimension(d.getWidth(), d.getHeight(), d.getAltitude());
     }
 
 }

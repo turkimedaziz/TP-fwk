@@ -1,8 +1,10 @@
 package net.thevpc.gaming.atom.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CollisionSides {
+public class CollisionSides implements Serializable {
+    private static final long serialVersionUID = 1L;
     public static final int SIDE_NONE = 0;
     public static final int SIDE_NORTH = 1;
     public static final int SIDE_EAST = 2;
@@ -25,14 +27,15 @@ public class CollisionSides {
     }
 
     public CollisionSides append(int i) {
-        return of(i|value);
+        return of(i | value);
     }
+
     public CollisionSides append(CollisionSides i) {
-        return of(i.value|value);
+        return of(i.value | value);
     }
 
     public String toString() {
-        int side=value;
+        int side = value;
         if (side == 0) {
             return "<none>";
         }
@@ -56,7 +59,6 @@ public class CollisionSides {
         return s.toString();
     }
 
-
     public boolean isNorth() {
         return (value & SIDE_NORTH) != 0;
     }
@@ -79,8 +81,10 @@ public class CollisionSides {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         CollisionSides that = (CollisionSides) o;
         return value == that.value;
     }
@@ -91,6 +95,6 @@ public class CollisionSides {
     }
 
     public boolean isNone() {
-        return value==0;
+        return value == 0;
     }
 }

@@ -3,17 +3,22 @@ package net.thevpc.gaming.atom.examples.kombla.main.shared.model;
 import net.thevpc.gaming.atom.model.Player;
 import net.thevpc.gaming.atom.model.Sprite;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by vpc on 10/7/16.
  */
-public class DynamicGameModel {
-    long frame; List<Sprite> sprites; java.util.List<Player> players;
+public class DynamicGameModel implements Serializable {
+    private static final long serialVersionUID = 1L;
+    long frame;
+    List<Sprite> sprites;
+    java.util.List<Player> players;
 
     public DynamicGameModel() {
 
     }
+
     public DynamicGameModel(long frame, List<Sprite> sprites, List<Player> players) {
         this.frame = frame;
         this.sprites = sprites;

@@ -4,6 +4,7 @@
  */
 package net.thevpc.gaming.atom.examples.kombla.main.server.engine;
 
+import net.thevpc.gaming.atom.examples.kombla.main.server.dal.RMIMainServerDAO;
 import net.thevpc.gaming.atom.examples.kombla.main.shared.engine.BaseMainEngine;
 import net.thevpc.gaming.atom.examples.kombla.main.server.dal.MainServerDAOListener;
 import net.thevpc.gaming.atom.examples.kombla.main.shared.model.DynamicGameModel;
@@ -27,7 +28,8 @@ public class MainServerEngine extends BaseMainEngine {
     protected void sceneActivating() {
         super.sceneActivating();
         // put here your MainClientDAO instance
-        dal = new TCPMainServerDAO();
+        // dal = new TCPMainServerDAO();
+        dal = new RMIMainServerDAO();
         // dal = new UDPMainServerDAO();
         dal.start(new MainServerDAOListener() {
             @Override

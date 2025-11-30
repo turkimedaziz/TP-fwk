@@ -10,7 +10,8 @@ import java.io.Serializable;
 /**
  * @author Taha Ben Salah (taha.bensalah@gmail.com)
  */
-public class ModelPoint extends Point {
+public class ModelPoint extends Point implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     public static ModelPoint ORIGIN = new ModelPoint(0, 0, 0);
     private double x;
@@ -31,14 +32,16 @@ public class ModelPoint extends Point {
         this.z = z;
     }
 
-    public ModelPoint copyAndSetX(double x){
-        return new ModelPoint(x,y,z);
+    public ModelPoint copyAndSetX(double x) {
+        return new ModelPoint(x, y, z);
     }
-    public ModelPoint copyAndSetY(double y){
-        return new ModelPoint(x,y,z);
+
+    public ModelPoint copyAndSetY(double y) {
+        return new ModelPoint(x, y, z);
     }
-    public ModelPoint copyAndSetZ(double z){
-        return new ModelPoint(x,y,z);
+
+    public ModelPoint copyAndSetZ(double z) {
+        return new ModelPoint(x, y, z);
     }
 
     public double getX() {
@@ -134,10 +137,11 @@ public class ModelPoint extends Point {
         return Math.atan2(other.y - y, other.x - x);
     }
 
-    public ModelPoint translate(ModelVector v){
-        return translate(v.getX(),v.getY(),v.getZ());
+    public ModelPoint translate(ModelVector v) {
+        return translate(v.getX(), v.getY(), v.getZ());
     }
-    public ModelPoint translate(double dx,double dy,double dz){
-        return new ModelPoint(x+dx,y+dy,z+dz);
+
+    public ModelPoint translate(double dx, double dy, double dz) {
+        return new ModelPoint(x + dx, y + dy, z + dz);
     }
 }

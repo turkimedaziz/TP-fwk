@@ -10,7 +10,8 @@ import java.io.Serializable;
 /**
  * @author Taha Ben Salah (taha.bensalah@gmail.com)
  */
-public class ModelBox extends Box {
+public class ModelBox extends Box implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     /**
      * The bitmask that indicates that a point lies to the left of this
@@ -106,17 +107,17 @@ public class ModelBox extends Box {
         double xw = x2 - x1;
         double yw = y2 - y1;
         double zw = z2 - z1;
-        if(xw<0 || yw<0 || zw<=0){
-            if(xw<=0){
-                xw=0;
+        if (xw < 0 || yw < 0 || zw <= 0) {
+            if (xw <= 0) {
+                xw = 0;
             }
-            if(yw<=0){
-                yw=0;
+            if (yw <= 0) {
+                yw = 0;
             }
-            if(zw<=0){
-                zw=0;
+            if (zw <= 0) {
+                zw = 0;
             }
-//            System.out.println("Why....");
+            // System.out.println("Why....");
         }
         return new ModelBox(x1, y1, z1, xw, yw, zw);
     }
@@ -146,7 +147,7 @@ public class ModelBox extends Box {
         }
         w += x0;
         h += y0;
-        //    overflow || intersect
+        // overflow || intersect
         return ((w < x0 || w > x)
                 && (h < y0 || h > y));
     }
@@ -164,7 +165,8 @@ public class ModelBox extends Box {
      * <code>Shape</code> in
      * <code>double</code> precision.
      *
-     * @return the smallest X coordinate of the framing rectangle of *      * the <code>Shape</code>.
+     * @return the smallest X coordinate of the framing rectangle of * * the
+     *         <code>Shape</code>.
      * @since 1.2
      */
     public double getMinX() {
@@ -176,7 +178,8 @@ public class ModelBox extends Box {
      * <code>Shape</code> in
      * <code>double</code> precision.
      *
-     * @return the smallest Y coordinate of the framing rectangle of *      * the <code>Shape</code>.
+     * @return the smallest Y coordinate of the framing rectangle of * * the
+     *         <code>Shape</code>.
      * @since 1.2
      */
     public double getMinY() {
@@ -192,7 +195,8 @@ public class ModelBox extends Box {
      * <code>Shape</code> in
      * <code>double</code> precision.
      *
-     * @return the largest X coordinate of the framing rectangle of *      * the <code>Shape</code>.
+     * @return the largest X coordinate of the framing rectangle of * * the
+     *         <code>Shape</code>.
      * @since 1.2
      */
     public double getMaxX() {
@@ -204,7 +208,8 @@ public class ModelBox extends Box {
      * <code>Shape</code> in
      * <code>double</code> precision.
      *
-     * @return the largest Y coordinate of the framing rectangle of *      * the <code>Shape</code>.
+     * @return the largest Y coordinate of the framing rectangle of * * the
+     *         <code>Shape</code>.
      * @since 1.2
      */
     public double getMaxY() {
@@ -220,7 +225,8 @@ public class ModelBox extends Box {
      * <code>Shape</code> in
      * <code>double</code> precision.
      *
-     * @return the X coordinate of the center of the framing rectangle of *      * the <code>Shape</code>.
+     * @return the X coordinate of the center of the framing rectangle of * * the
+     *         <code>Shape</code>.
      * @since 1.2
      */
     public double getCenterX() {
@@ -232,7 +238,8 @@ public class ModelBox extends Box {
      * <code>Shape</code> in
      * <code>double</code> precision.
      *
-     * @return the Y coordinate of the center of the framing rectangle of *      * the <code>Shape</code>.
+     * @return the Y coordinate of the center of the framing rectangle of * * the
+     *         <code>Shape</code>.
      * @since 1.2
      */
     public double getCenterY() {
@@ -458,7 +465,8 @@ public class ModelBox extends Box {
 
     @Override
     public String toString() {
-        return "[" + "x=" + (x+"->"+(x+width)) + ", y=" + (y +"->"+(y+height))+ ", width=" + width + ", height=" + height + ']';
+        return "[" + "x=" + (x + "->" + (x + width)) + ", y=" + (y + "->" + (y + height)) + ", width=" + width
+                + ", height=" + height + ']';
     }
 
     public java.awt.Point[] getAWTPoints() {
@@ -466,11 +474,11 @@ public class ModelBox extends Box {
         int maxX = (int) getMaxX();
         int minY = (int) getMinY();
         int maxY = (int) getMaxY();
-        return new java.awt.Point[]{
+        return new java.awt.Point[] {
                 new java.awt.Point(minX, minY),
                 new java.awt.Point(maxX, minY),
                 new java.awt.Point(maxX, maxY),
-                new java.awt.Point(minX, maxY),};
+                new java.awt.Point(minX, maxY), };
     }
 
     public java.awt.Point.Double[] getAWTPointsDouble() {
@@ -478,11 +486,11 @@ public class ModelBox extends Box {
         double maxX = getMaxX();
         double minY = getMinY();
         double maxY = getMaxY();
-        return new java.awt.Point.Double[]{
+        return new java.awt.Point.Double[] {
                 new java.awt.Point.Double(minX, minY),
                 new java.awt.Point.Double(maxX, minY),
                 new java.awt.Point.Double(maxX, maxY),
-                new java.awt.Point.Double(minX, maxY),};
+                new java.awt.Point.Double(minX, maxY), };
     }
 
     public java.awt.Point.Float[] getAWTPointsFloat() {
@@ -490,15 +498,15 @@ public class ModelBox extends Box {
         float maxX = (float) getMaxX();
         float minY = (float) getMinY();
         float maxY = (float) getMaxY();
-        return new java.awt.Point.Float[]{
+        return new java.awt.Point.Float[] {
                 new java.awt.Point.Float(minX, minY),
                 new java.awt.Point.Float(maxX, minY),
                 new java.awt.Point.Float(maxX, maxY),
-                new java.awt.Point.Float(minX, maxY),};
+                new java.awt.Point.Float(minX, maxY), };
     }
 
     public ModelPoint[] getModelPoints() {
-        return new ModelPoint[]{
+        return new ModelPoint[] {
                 new ModelPoint(getMinX(), getMinY(), getMinZ()),
                 new ModelPoint(getMaxX(), getMinY(), getMinZ()),
                 new ModelPoint(getMaxX(), getMaxY(), getMinZ()),
@@ -506,33 +514,33 @@ public class ModelBox extends Box {
         };
     }
 
-    //    public ModelPoint[] getModelPoints() {
-//        double minX = getMinX();
-//        double maxX = getMaxX();
-//        double minY = getMinY();
-//        double maxY = getMaxY();
-//        return new ModelPoint[]{
-//            new ModelPoint(minX, minY),
-//            new ModelPoint(maxX, minY),
-//            new ModelPoint(maxX, maxY),
-//            new ModelPoint(minX, maxY),
-//        };
-//    }
+    // public ModelPoint[] getModelPoints() {
+    // double minX = getMinX();
+    // double maxX = getMaxX();
+    // double minY = getMinY();
+    // double maxY = getMaxY();
+    // return new ModelPoint[]{
+    // new ModelPoint(minX, minY),
+    // new ModelPoint(maxX, minY),
+    // new ModelPoint(maxX, maxY),
+    // new ModelPoint(minX, maxY),
+    // };
+    // }
     public ViewPoint[] getViewPoints() {
         int minX = (int) getMinX();
         int maxX = (int) getMaxX();
         int minY = (int) getMinY();
         int maxY = (int) getMaxY();
-        return new ViewPoint[]{
+        return new ViewPoint[] {
                 new ViewPoint(minX, minY),
                 new ViewPoint(maxX, minY),
                 new ViewPoint(maxX, maxY),
-                new ViewPoint(minX, maxY),};
+                new ViewPoint(minX, maxY), };
     }
 
     public ModelSegment[] getSegments() {
         ModelPoint[] p = getModelPoints();
-        return new ModelSegment[]{
+        return new ModelSegment[] {
                 new ModelSegment(p[0], p[1]),
                 new ModelSegment(p[1], p[2]),
                 new ModelSegment(p[2], p[3]),
@@ -541,11 +549,11 @@ public class ModelBox extends Box {
     }
 
     public ModelBox getDimensionBox() {
-        return new ModelBox(0, 0, 0,width, height,altitude);
+        return new ModelBox(0, 0, 0, width, height, altitude);
     }
 
     public ModelDimension getDimension() {
-        return new ModelDimension(width, height,altitude);
+        return new ModelDimension(width, height, altitude);
     }
 
     public ModelBox concat(ModelBox other) {
@@ -554,7 +562,6 @@ public class ModelBox extends Box {
         double miny = Math.min(getMinY(), other.getMinY());
         double maxy = Math.max(getMaxY(), other.getMaxY());
         return new ModelBox(
-                minx, miny, (maxx - minx), (maxy - miny)
-        );
+                minx, miny, (maxx - minx), (maxy - miny));
     }
 }
